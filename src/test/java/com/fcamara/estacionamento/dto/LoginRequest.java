@@ -1,9 +1,12 @@
 package com.fcamara.estacionamento.dto;
 
 public class LoginRequest {
-
     private String username;
     private String password;
+
+    // Construtor padrão (necessário para criar o objeto sem parâmetros)
+    public LoginRequest() {
+    }
 
     // Getters e Setters
     public String getUsername() {

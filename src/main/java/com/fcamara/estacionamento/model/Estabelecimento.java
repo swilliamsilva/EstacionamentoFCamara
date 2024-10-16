@@ -1,9 +1,6 @@
 package com.fcamara.estacionamento.model;
 
-import jakarta.persistence.Entity;
-import jakarta.persistence.GeneratedValue;
-import jakarta.persistence.GenerationType;
-import jakarta.persistence.Id;
+import jakarta.persistence.*;
 
 @Entity
 public class Estabelecimento {
@@ -11,15 +8,33 @@ public class Estabelecimento {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
+
+    @Column(nullable = false)
     private String nome;
+
+    @Column(nullable = false, unique = true)
     private String cnpj;
+
     private String endereco;
     private String telefone;
     private int vagasMotos;
     private int vagasCarros;
 
-    // Getters e Setters
+    // Construtor com parâmetros
+    public Estabelecimento(String nome, String cnpj, String endereco, String telefone, int vagasMotos, int vagasCarros) {
+        this.nome = nome;
+        this.cnpj = cnpj;
+        this.endereco = endereco;
+        this.telefone = telefone;
+        this.vagasMotos = vagasMotos;
+        this.vagasCarros = vagasCarros;
+    }
 
+    // Construtor padrão (sem parâmetros)
+    public Estabelecimento() {
+    }
+
+    // Getters e Setters
     public Long getId() {
         return id;
     }

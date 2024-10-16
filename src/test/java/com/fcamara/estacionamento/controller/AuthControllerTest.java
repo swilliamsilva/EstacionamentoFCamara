@@ -23,25 +23,27 @@ public class AuthControllerTest {
     @Autowired
     private MockMvc mockMvc;
 
+    @Autowired
+    private ObjectMapper objectMapper;
+
     @MockBean
-    private JwtService jwtService;
+    private JwtService jwtService;  // Simulação do JwtService para gerar um token fictício
 
     @Test
-    public void testLogin() throws Exception {
-        // Simulando uma requisição de login
+    public void deveLogarComSucessoEGerarJWT() throws Exception {
+        // Criando o objeto LoginRequest usando o construtor padrão
         LoginRequest loginRequest = new LoginRequest();
-        loginRequest.setUsername("user");
+        loginRequest.setUsername("admin");
         loginRequest.setPassword("password");
 
-        // Token JWT falso para fins de teste
-        String token = "fake-jwt-token";
-        when(jwtService.generateToken("user")).thenReturn(token);
+        // Simulando a geração de um token JWT fictício
+        when(jwtService.generateToken("admin")).thenReturn("fake-jwt-token");
 
-        // Realizando a requisição POST e verificando a resposta
+        // Fazendo a requisição POST para o login e verificando o retorno
         mockMvc.perform(post("/api/auth/login")
                 .contentType(MediaType.APPLICATION_JSON)
-                .content(new ObjectMapper().writeValueAsString(loginRequest)))
-                .andExpect(status().isOk())
-                .andExpect(jsonPath("$.token").value(token));
+                .content(objectMapper.writeValueAsString(loginRequest)))
+                .andExpect(status().isOk())  // Verifica se o status HTTP retornado é 200 OK
+                .andExpect(jsonPath("$.token").value("fake-jwt-token"));  // Verifica se o campo 'token' existe na resposta
     }
 }
