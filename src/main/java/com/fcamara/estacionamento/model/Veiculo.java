@@ -10,28 +10,22 @@ public class Veiculo {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-    @NotEmpty(message = "A marca é obrigatória")
+    @NotEmpty
     private String marca;
 
-    @NotEmpty(message = "O modelo é obrigatório")
+    @NotEmpty
     private String modelo;
 
+    @NotEmpty
     private String cor;
 
-    @NotEmpty(message = "A placa é obrigatória")
-    @Column(nullable = false, unique = true)
+    @NotEmpty
     private String placa;
 
     @Enumerated(EnumType.STRING)
-    @Column(nullable = false)
     private TipoVeiculo tipo;
 
-    public enum TipoVeiculo {
-        MOTO,
-        CARRO
-    }
-
-    // Construtor padrão
+    // Construtor padrão (necessário para JPA)
     public Veiculo() {
     }
 
