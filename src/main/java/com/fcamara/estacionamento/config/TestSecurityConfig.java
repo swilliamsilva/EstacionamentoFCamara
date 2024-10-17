@@ -7,9 +7,10 @@ import org.springframework.security.web.SecurityFilterChain;
 
 @Configuration
 public class TestSecurityConfig {
+
     @Bean
     public SecurityFilterChain securityFilterChain(HttpSecurity http) throws Exception {
-        http.csrf().disable().authorizeRequests().anyRequest().permitAll(); // Desabilita toda segurança
+        http.csrf().disable().authorizeRequests().anyRequest().permitAll(); // Desabilita toda segurança para testes
         return http.build();
     }
 }
