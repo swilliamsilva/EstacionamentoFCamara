@@ -1,0 +1,34 @@
+type Vehicle {
+  id: ID!
+  marca: String!
+  modelo: String!
+  cor: String!
+  placa: String!
+  tipo: String!
+}
+
+type Estabelecimento {
+  id: ID!
+  nome: String!
+  cnpj: String!
+  endereco: String!
+  telefone: String!
+  vagasMotos: Int!
+  vagasCarros: Int!
+}
+
+type Query {
+  veiculos: [Vehicle]
+  estabelecimentos: [Estabelecimento]
+  veiculo(id: ID!): Vehicle
+  estabelecimento(id: ID!): Estabelecimento
+}
+
+type Mutation {
+  criarVeiculo(marca: String!, modelo: String!, cor: String!, placa: String!, tipo: String!): Vehicle
+  atualizarVeiculo(id: ID!, marca: String, modelo: String, cor: String, placa: String, tipo: String): Vehicle
+  deletarVeiculo(id: ID!): Boolean
+  criarEstabelecimento(nome: String!, cnpj: String!, endereco: String!, telefone: String!, vagasMotos: Int!, vagasCarros: Int!): Estabelecimento
+  atualizarEstabelecimento(id: ID!, nome: String, cnpj: String, endereco: String, telefone: String, vagasMotos: Int, vagasCarros: Int): Estabelecimento
+  deletarEstabelecimento(id: ID!): Boolean
+}

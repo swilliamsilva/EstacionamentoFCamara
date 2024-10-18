@@ -1,17 +1,14 @@
 package com.fcamara.estacionamento.controller;
 
-import com.fcamara.estacionamento.model.RegistroEntradaSaida;
-import com.fcamara.estacionamento.model.Veiculo;
-import com.fcamara.estacionamento.repository.RegistroEntradaSaidaRepository;
-import com.fcamara.estacionamento.repository.VeiculoRepository;
-import com.fcamara.estacionamento.service.RegistroEntradaSaidaService;
-
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.*;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RestController;
 
-import java.time.LocalDateTime;
-import java.util.Optional;
+import com.fcamara.estacionamento.model.RegistroEntradaSaida;
+import com.fcamara.estacionamento.service.RegistroEntradaSaidaService;
 
 @RestController
 @RequestMapping("/api")
